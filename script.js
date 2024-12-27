@@ -1,5 +1,28 @@
-getComputerChoice();
-getHumanChoice();
+let computerScore = 0;
+let humanScore = 0;
+
+let computerChoice = getComputerChoice();
+let humanChoice = getHumanChoice();
+
+playRound(humanChoice, computerChoice);
+
+function playRound(humanChoice, computerChoice) {
+    // Logic for tie
+    if (humanChoice === computerChoice) {
+        console.log(`You tie! You both chose ${humanChoice} `)
+    }
+    // Logic for win
+    else if (humanChoice === 'rock' && computerChoice === 'scissors' || humanChoice === 'paper' && computerChoice === 'rock' || humanChoice === 'scissors' && computerChoice === 'paper') {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}. `)
+        humanScore++;
+    } 
+    // Logic for loss
+    else {
+        console.log(`You lose. ${computerChoice} beats ${humanChoice}. `)
+        computerScore++;
+    }
+    console.log(`Player: ${humanScore} Computer: ${computerScore}`)
+}
 
 function getHumanChoice() {
     let choice = prompt('Pick rock paper or scissors.').toLowerCase()
