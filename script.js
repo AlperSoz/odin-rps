@@ -1,4 +1,15 @@
 getComputerChoice();
+getHumanChoice();
+
+function getHumanChoice() {
+    let choice = prompt('Pick rock paper or scissors.').toLowerCase()
+
+    if (choice === 'rock' || choice === 'paper' || choice === 'scissors') {
+        return choice;
+    } else {
+        getHumanChoice();
+    }
+}
 
 function getComputerChoice() {
     const n = Math.random() * 100;
