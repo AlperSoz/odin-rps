@@ -1,51 +1,70 @@
 let computerScore = 0;
 let humanScore = 0;
+let amountTied = 0;
+playGame(5);
 
-let computerChoice = getComputerChoice();
-let humanChoice = getHumanChoice();
+function playGame(n) {
+  for (let i = 0; i < n; i++) {
+    playRound();
+  }
 
-playRound(humanChoice, computerChoice);
+  if (humanScore === computerScore) {
+    console.log(
+      `You tied! You both won ${humanScore} rounds and tied ${amountTied}.`
+    );
+  } else if (humanScore > computerScore) {
+    console.log(
+      `You won the game! You won ${humanScore} rounds, tied ${amountTied} rounds and lost ${computerScore} rounds.`
+    );
+  } else {
+    console.log(
+      `You lost the game :( You won ${humanScore} rounds, tied ${amountTied} rounds and lost ${computerScore} rounds.`
+    );
+  }
+}
 
-function playRound(humanChoice, computerChoice) {
-    // Logic for tie
-    if (humanChoice === computerChoice) {
-        console.log(`You tie! You both chose ${humanChoice} `)
-    }
-    // Logic for win
-    else if (humanChoice === 'rock' && computerChoice === 'scissors' || humanChoice === 'paper' && computerChoice === 'rock' || humanChoice === 'scissors' && computerChoice === 'paper') {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}. `)
-        humanScore++;
-    } 
-    // Logic for loss
-    else {
-        console.log(`You lose. ${computerChoice} beats ${humanChoice}. `)
-        computerScore++;
-    }
-    console.log(`Player: ${humanScore} Computer: ${computerScore}`)
+function playRound() {
+  // Get computer's choice
+  let computerChoice = getComputerChoice();
+  // Get human's choice
+  let humanChoice = getHumanChoice();
+
+  // Logic for tie
+  if (humanChoice === computerChoice) {
+    amountTied++;
+  }
+  // Logic for win
+  else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    humanScore++;
+  }
+  // Logic for loss
+  else {
+    computerScore++;
+  }
 }
 
 function getHumanChoice() {
-    let choice = prompt('Pick rock paper or scissors.').toLowerCase()
+  let choice = prompt("Pick rock paper or scissors.").toLowerCase();
 
-    if (choice === 'rock' || choice === 'paper' || choice === 'scissors') {
-        return choice;
-    } else {
-        getHumanChoice();
-    }
+  if (choice === "rock" || choice === "paper" || choice === "scissors") {
+    return choice;
+  } else {
+    getHumanChoice();
+  }
 }
 
 function getComputerChoice() {
-    const n = Math.random() * 100;
-    console.log(n);
-    if (n < 33) {
-        console.log('rock');
-        return 'rock';
-    }
-    if (n > 33 && n < 66) {
-        console.log('paper');
-        return 'paper';
-    } else {
-        console.log('scissors');
-        return 'scissors';
-    }
+  const n = Math.random() * 100;
+  if (n < 33) {
+    return "rock";
+  }
+  if (n > 33 && n < 66) {
+    return "paper";
+  } else {
+    return "scissors";
+  }
 }
