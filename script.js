@@ -1,11 +1,14 @@
 let computerScore = 0;
 let humanScore = 0;
 let amountTied = 0;
+let round = 1;
+
 playGame(5);
 
 function playGame(n) {
   for (let i = 0; i < n; i++) {
     playRound();
+    round++;
   }
 
   if (humanScore === computerScore) {
@@ -48,11 +51,12 @@ function playRound() {
 }
 
 function getHumanChoice() {
-  let choice = prompt("Pick rock paper or scissors.").toLowerCase();
+  let choice = prompt(`Round ${round}: Pick rock paper or scissors.`).toLowerCase();
 
   if (choice === "rock" || choice === "paper" || choice === "scissors") {
     return choice;
   } else {
+    console.log(`Invalid choice. Please try again.`)
     getHumanChoice();
   }
 }
