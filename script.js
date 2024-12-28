@@ -35,6 +35,7 @@ function playRound() {
   // Logic for tie
   if (humanChoice === computerChoice) {
     amountTied++;
+    console.log(`You tied round ${round}.`)
   }
   // Logic for win
   else if (
@@ -43,10 +44,12 @@ function playRound() {
     (humanChoice === "scissors" && computerChoice === "paper")
   ) {
     humanScore++;
+    console.log(`Nice you won round ${round}!`);
   }
   // Logic for loss
   else {
     computerScore++;
+    console.log(`Unlucky you lost round ${round}.`);
   }
 }
 
